@@ -6,13 +6,15 @@
 
 ;(function($){
 
-    function Zoom(){
+    function Zoom(opction){
 
         this.images = [];
         this.zoomWrap = $(".zoom");
         this.imgWrap = $(".zoom-show-wrap > img");
-        this.imagesDirect = "./images/case/";
+        this.imagesDirect = opction.direct || "./case/1/"; //目录
+        this.eventElement = opction.element || "#zoom";
         this.direct = "";
+        this.loading = $(".zoom-loading")
         this.now = 0;
         this.onload()
 
@@ -23,13 +25,13 @@
         var _this = this;
 
         //添加事件
-        $("#zoom > ul > li").click(function(){
+        $(this.eventElement + " > ul > li").click(function(){
             _this.now = 0;
             _this.images = $(this).attr("data-bigimages").split(",");
             _this.direct = $(this).attr("data-direct");
                 // console.log(images)
             if(_this.images && _this.direct){
-                _this.zoomWrap.show();
+                _this.zoomWrap.fadeIn();
                 _this.changeImg(_this.direct, _this.now)
             }
         })
@@ -62,12 +64,20 @@
      */
     Zoom.prototype.changeImg = function(direct){
         if(direct){
-            var imgUrl = this.imagesDirect + direct + "/" + this.images[this.now];
-            this.imgWrap.attr('src', imgUrl); 
+            console.log(this.now,this.images.length)
+            $('.zoom-navigation').html(this.now + 1 + '/' + this.images.length);
+            var imgUrl = this.imagesDirect + direct + "/" + this.images[this.now], 
+            _this = this;
+            this.loading.fadeIn();
+            setTimeout(function(){
+                _this.imgWrap.attr('src', imgUrl); 
+                _this.loading.fadeOut();
+            },500)
+            
         }
     }
 
-    new Zoom();
+    window.Zoom = Zoom;
     
 
 })(jQuery)
