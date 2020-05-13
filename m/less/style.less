@@ -7,14 +7,20 @@ header{
     position: fixed;
     top: 0;
     left: 0;
-    padding: 50rem/@b 40rem/@b 28rem/@b;
-    z-index: 9999;
+    padding: 28rem/@b 40rem/@b 28rem/@b;
+    z-index: 1;
     background: #fff;
+    transition: all .3s;
+    &.active{
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 10rem/@b 40rem/@b 10rem/@b
+    }
     .shawod();
     .header{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        
         .logo{
             display: flex;
             align-items: center;

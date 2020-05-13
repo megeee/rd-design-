@@ -3,10 +3,15 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0.66666667rem 0.53333333rem 0.37333333rem;
-  z-index: 9999;
+  padding: 0.37333333rem 0.53333333rem 0.37333333rem;
+  z-index: 1;
   background: #fff;
+  transition: all .3s;
   box-shadow: 0 0 0.33333333rem rgba(0, 0, 0, 0.1);
+}
+header.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.13333333rem 0.53333333rem 0.13333333rem;
 }
 header .header {
   display: flex;
